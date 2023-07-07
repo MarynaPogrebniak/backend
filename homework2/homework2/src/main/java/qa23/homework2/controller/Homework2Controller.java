@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class Homework2Controller {
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @RequestMapping(value = "/hellopage", method = RequestMethod.GET)
     public String getMap() {
         return "hello";
     }
 
-    @RequestMapping(value = "/goodbye", method = RequestMethod.GET)
+    @RequestMapping(value = "/goodbyepage", method = RequestMethod.GET)
     public String getMap1() {
         return "goodbye";
     }
