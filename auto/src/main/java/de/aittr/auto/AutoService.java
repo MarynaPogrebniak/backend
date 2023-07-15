@@ -26,4 +26,15 @@ public class AutoService {
         Optional<Auto> auto = repository.findByID(id);
         return auto;
     }
+
+    public Optional<Auto> getAutoByOwner(String owner) {
+        Optional<Auto> owners = repository.findByOwner(owner);
+        return owners;
+    }
+
+    public Optional<Auto> getAllAutosByOwner(String owner) {
+        Optional<Auto> owners = repository.findAllAutosByOneOwner(owner);
+        return owners;
+    }
+
 }

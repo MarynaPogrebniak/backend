@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -45,4 +44,6 @@ public class AutoController {
         model.addAttribute("auto", auto);
         return "auto";
     }
+
+
 }

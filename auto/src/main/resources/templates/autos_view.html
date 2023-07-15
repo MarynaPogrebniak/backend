@@ -12,11 +12,13 @@
             <th>ID</th>
             <th>Plate</th>
             <th>Brand</th>
+            <th>Owner</th>
         </tr>
         <tr th:each="auto:${myListOfAutos}">
             <td th:text="${auto.getId()}"></td>
             <td th:text="${auto.getPlate()}"></td>
             <td th:text="${auto.getBrand()}"></td>
+            <td th:text="${auto.getOwner()}"></td>
         </tr>
         </tbody>
     </table>
