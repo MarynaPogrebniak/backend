@@ -1,9 +1,9 @@
 import models.User;
-import repositories.UsersRepositoryFile;
+import repositories.impl.UsersRepositoryFileImpl;
 
 public class Main2 {
     public static void main(String[] args) {
-        UsersRepositoryFile usersRepository = new UsersRepositoryFile();
+        UsersRepositoryFileImpl usersRepository = new UsersRepositoryFileImpl();
         User user = new User("m@gmail.com", "qwerty");
         usersRepository.save(user);
     }

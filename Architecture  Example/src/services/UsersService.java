@@ -1,18 +1,17 @@
 package services;
 
 import models.User;
-import repositories.UsersRepositoryFile;
-import repositories.UsersRepositoryList;
+import repositories.UsersRepository;
+import repositories.impl.UsersRepositoryFileImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UsersService {
 
-    private final UsersRepositoryFile usersRepository;
+    private final UsersRepository usersRepository;
 
-    public UsersService () {
-        this.usersRepository = new UsersRepositoryFile();
+    public UsersService (UsersRepository usersRepository) {
+        this.usersRepository = new UsersRepositoryFileImpl();
     }
     public void signUp(String email, String password) {
 
