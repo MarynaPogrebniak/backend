@@ -13,7 +13,7 @@ import java.util.List;
 public class CarsController {
     private final CarsService carsService; // final чтобы это поле нельзя было менять
 
-    public CarsController (CarsServiceImpl service) {
+    public CarsController (CarsService service) {
         this.carsService = service;
     }
     /* @GetMapping("/cars")
