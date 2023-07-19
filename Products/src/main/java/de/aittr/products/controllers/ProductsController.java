@@ -14,7 +14,7 @@ public class ProductsController {
 
     private final ProductsService productsService;
 
-    public ProductsController (ProductsServiceImpl service) {
+    public ProductsController (ProductsService service) {
         this.productsService = service;
     }
 
