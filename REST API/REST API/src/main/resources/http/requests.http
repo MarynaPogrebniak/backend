@@ -1,0 +1,54 @@
+### Добавление Марселя
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "email": "sidikov.marsel@gmail.com",
+  "password": "qwerty007"
+}
+
+### Добавление Алишера
+
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "email": "alisher@gmail.com",
+  "password": "qwerty008"
+}
+
+
+### Получение всех пользователей
+
+GET localhost:8080/api/users
+
+### Добавление события RCHP
+
+POST http://localhost:8080/api/events
+Content-Type: application/json
+
+{
+  "name": "RHCP Concert",
+  "location": "Stuttgart",
+  "price": 100
+}
+
+### Добавление события Lenny Kravitz
+
+POST http://localhost:8080/api/events
+Content-Type: application/json
+
+{
+  "name": "Lenny Kravitz Concert",
+  "location": "Berlin",
+  "price": 150
+}
+
+### Получение всех событий
+
+GET localhost:8080/api/events
+
+
+
+
