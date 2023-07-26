@@ -49,6 +49,55 @@ Content-Type: application/json
 
 GET localhost:8080/api/events
 
+### Удаление пользователя
+
+DELETE localhost:8080/api/users/2
+
+### Обновление Марселя
+
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{
+  "newRole" : "MANAGER",
+  "newState" : "BANNED"
+}
+
+### Обновление Алишера
+
+PUT http://localhost:8080/api/users/2
+Content-Type: application/json
+
+{
+  "newRole" : "ADMIN",
+  "newState" : "BANNED"
+}
+
+### Получаем Марселя
+
+GET http://localhost:8080/api/users/1
+
+### Удаление события
+
+DELETE localhost:8080/api/events/1
+
+### Обновление события
+
+PUT http://localhost:8080/api/events/1
+Content-Type: application/json
+
+{
+  "newName" : "Metallica",
+  "newLocation" : "Singen",
+  "newState" : "IN_PROGRESS"
+}
+
+### Получаем одно событие
+
+GET http://localhost:8080/api/events/1
+
+
+
 
 
 
