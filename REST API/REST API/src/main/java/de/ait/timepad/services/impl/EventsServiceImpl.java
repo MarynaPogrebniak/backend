@@ -78,8 +78,8 @@ public class EventsServiceImpl implements EventsService {
 
         Event event = getEventOrThrow(eventId);
 
-        event.setState(Event.State.valueOf(updateEvent.getNewName()));
-        event.setState(Event.State.valueOf(updateEvent.getNewLocation()));
+        event.setName(updateEvent.getNewName());
+        event.setLocation(updateEvent.getNewLocation());
         event.setState(Event.State.valueOf(updateEvent.getNewState()));
 
         eventsRepository.save(event);
