@@ -10,7 +10,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Tags(value = {
         @Tag(name = "Events")
@@ -21,7 +24,7 @@ public interface EventsApi {
     @Operation(summary = "Создание события", description = "Доступно только администратору")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    EventDto addEvent(@Parameter(required = true, description = "Событие") @RequestBody NewEventDto newEvent);
+    ResponseEntity<EventDto> addEvent(@Parameter(required = true, description = "Событие") @RequestBody @Valid NewEventDto newEvent);
 
     @Operation(summary = "Получение списка событий", description = "Доступно всем")
     @GetMapping

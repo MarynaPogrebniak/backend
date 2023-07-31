@@ -8,7 +8,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@EqualsAndHashCode(exclude = "events")
+@EqualsAndHashCode(exclude = "articles")
 public class User {
 
     public enum Role {
@@ -32,5 +32,5 @@ public class User {
     private Role role;
     private State state;
 
-    private List<Event> events;
+    private List<Article> articles;
 }

@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,9 @@ public class EventsController implements EventsApi {
     private final EventsService eventsService;
 
     @Override
-    public EventDto addEvent(NewEventDto newEvent) {
-        return eventsService.addEvent(newEvent);
+    public ResponseEntity<EventDto> addEvent(NewEventDto newEvent) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(eventsService.addEvent(newEvent));
     }
 
     @Override

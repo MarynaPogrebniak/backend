@@ -8,6 +8,12 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/**
+ * 7/21/2023
+ * REST API
+ *
+ * @author Marsel Sidikov (AIT TR)
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

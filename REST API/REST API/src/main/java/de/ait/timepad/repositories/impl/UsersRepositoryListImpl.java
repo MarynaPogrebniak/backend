@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * 7/21/2023
+ * REST API
+ *
+ * @author Marsel Sidikov (AIT TR)
+ */
 @Repository
 public class UsersRepositoryListImpl implements UsersRepository {
     private static List<User> users = new ArrayList<>();

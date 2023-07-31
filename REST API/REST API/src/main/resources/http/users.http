@@ -23,32 +23,6 @@ Content-Type: application/json
 
 GET localhost:8080/api/users
 
-### Добавление события RCHP
-
-POST http://localhost:8080/api/events
-Content-Type: application/json
-
-{
-  "name": "RHCP Concert",
-  "location": "Stuttgart",
-  "price": 100
-}
-
-### Добавление события Lenny Kravitz
-
-POST http://localhost:8080/api/events
-Content-Type: application/json
-
-{
-  "name": "Lenny Kravitz Concert",
-  "location": "Berlin",
-  "price": 150
-}
-
-### Получение всех событий
-
-GET localhost:8080/api/events
-
 ### Удаление пользователя
 
 DELETE localhost:8080/api/users/2
@@ -76,28 +50,3 @@ Content-Type: application/json
 ### Получаем Марселя
 
 GET http://localhost:8080/api/users/1
-
-### Удаление события
-
-DELETE localhost:8080/api/events/1
-
-### Обновление события
-
-PUT http://localhost:8080/api/events/1
-Content-Type: application/json
-
-{
-  "newName" : "Metallica",
-  "newLocation" : "Singen",
-  "newState" : "IN_PROGRESS"
-}
-
-### Получаем одно событие
-
-GET http://localhost:8080/api/events/1
-
-
-
-
-
-

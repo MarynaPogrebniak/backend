@@ -1,9 +1,6 @@
 package de.ait.timepad.controllers.api;
 
-import de.ait.timepad.dto.NewUserDto;
-import de.ait.timepad.dto.UpdateUserDto;
-import de.ait.timepad.dto.UserDto;
-import de.ait.timepad.dto.UsersDto;
+import de.ait.timepad.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,8 +10,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 
 @Tags(value = {
         @Tag(name = "Users")
@@ -25,7 +24,7 @@ public interface UsersApi {
     @Operation(summary = "Создание пользователя", description = "Доступно только администратору")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    UserDto addUser(@Parameter(required = true, description = "Пользователь") @RequestBody NewUserDto newUser);
+    ResponseEntity<UserDto> addUser(@Parameter(required = true, description = "Пользователь") @RequestBody @Valid NewUserDto newUser);
 
     @Operation(summary = "Получение пользователей", description = "Доступно всем")
     @GetMapping
@@ -72,7 +71,7 @@ public interface UsersApi {
                     content = {
                             @Content()
                     }),
-            @ApiResponse(responseCode = "200", description = "Обновленный пользователь",
+            @ApiResponse(responseCode = "200", description = "Информация о пользователе",
                     content = {
                             @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
                     })
@@ -80,5 +79,20 @@ public interface UsersApi {
     @GetMapping("/{user-id}")
     UserDto getUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
                     @PathVariable("user-id") Long userId);
+
+    @Operation(summary = "Получение всех статей пользователя", description = "Доступно всем")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Пользователь не найден",
+                    content = {
+                            @Content()
+                    }),
+            @ApiResponse(responseCode = "200", description = "Статьи пользователя пользователь",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ArticlesDto.class))
+                    })
+    })
+    @GetMapping("/{user-id}/articles")
+    ArticlesDto getArticlesOfUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
+                                  @PathVariable("user-id") Long userId);
 
 }
