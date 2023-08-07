@@ -24,7 +24,7 @@ Content-Type: application/json
 
 ### Добавление задачи 3
 
-POST localhost:8080//users/3/tasks
+POST localhost:8080//users/2/tasks
 Content-Type: application/json
 
 {
@@ -33,7 +33,6 @@ Content-Type: application/json
   "startDate": "2022-01-02",
   "finishDate": "2022-01-22"
 }
-
 
 ### Получение всех задач пользователя 1
 

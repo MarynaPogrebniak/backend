@@ -1,4 +1,4 @@
-### Добавление Марселя
+### Добавление пользователя 1
 
 POST http://localhost:8080/users
 Content-Type: application/json
@@ -8,7 +8,7 @@ Content-Type: application/json
   "password": ""
 }
 
-### Добавление Алишера
+### Добавление пользователя 2
 
 POST http://localhost:8080/users
 Content-Type: application/json
