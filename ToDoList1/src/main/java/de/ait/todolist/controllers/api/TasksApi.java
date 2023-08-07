@@ -33,6 +33,6 @@ public interface TasksApi {
     })
     @PostMapping("/{users-id}/tasks")
     @ResponseStatus(HttpStatus.CREATED)
-    ResponseEntity<TaskDto> addTask( @RequestBody @Valid NewTaskDto newTask, @PathVariable("users-id") Long userId);
+    ResponseEntity<TaskDto> addTask(@RequestBody @Valid NewTaskDto newTask, @PathVariable("users-id") Long userId);
 }
 
