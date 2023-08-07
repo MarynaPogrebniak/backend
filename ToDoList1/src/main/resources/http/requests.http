@@ -1,3 +1,28 @@
+### Добавление пользователя 1
+
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "email": "",
+  "password": ""
+}
+
+### Добавление пользователя 2
+
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "email": "alisher@gmail.com",
+  "password": "hello006!"
+}
+
+
+### Получение всех пользователей
+
+GET localhost:8080/users
+
 ### Добавление задачи 1
 
 POST localhost:8080//users/1/tasks
@@ -19,7 +44,7 @@ Content-Type: application/json
   "title" : "2",
   "description" : "Описание задачи 2",
   "startDate": "2022-01-02",
-  "finishDate": ""
+  "finishDate": "2025-01-02"
 }
 
 ### Добавление задачи 3
@@ -30,14 +55,14 @@ Content-Type: application/json
 {
   "title" : "Задача 3",
   "description" : "Описание задачи 3",
-  "startDate": "2022-01-02",
-  "finishDate": "2022-01-22"
+  "startDate": "2024-01-02",
+  "finishDate": "2024-01-22"
 }
 
 ### Получение всех задач пользователя 1
 
 GET localhost:8080/users/1/tasks
 
-### Получение всех статей пользователя 2
+### Получение всех задач пользователя 2
 
 GET localhost:8080/users/2/tasks
