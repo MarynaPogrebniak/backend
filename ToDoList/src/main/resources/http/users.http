@@ -1,0 +1,25 @@
+### Добавление Марселя
+
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "email": "",
+  "password": ""
+}
+
+### Добавление Алишера
+
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "email": "alisher@gmail.com",
+  "password": "hel"
+}
+
+
+### Получение всех пользователей
+
+GET localhost:8080/users
+

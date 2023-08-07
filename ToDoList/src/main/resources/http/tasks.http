@@ -1,0 +1,44 @@
+### Добавление задачи 1
+
+POST localhost:8080//users/1/tasks
+Content-Type: application/json
+
+{
+  "title" : "",
+  "description" : "Описание задачи 1",
+  "startDate": "2022-01-02",
+  "finishDate": "2022-02-03"
+}
+
+### Добавление задачи 2
+
+POST localhost:8080//users/1/tasks
+Content-Type: application/json
+
+{
+  "title" : "2",
+  "description" : "Описание задачи 2",
+  "startDate": "2022-01-02",
+  "finishDate": ""
+}
+
+### Добавление задачи 3
+
+POST localhost:8080//users/3/tasks
+Content-Type: application/json
+
+{
+  "title" : "Задача 3",
+  "description" : "Описание задачи 3",
+  "startDate": "2022-01-02",
+  "finishDate": "2022-01-22"
+}
+
+
+### Получение всех задач пользователя 1
+
+GET localhost:8080/users/1/tasks
+
+### Получение всех статей пользователя 2
+
+GET localhost:8080/users/2/tasks
