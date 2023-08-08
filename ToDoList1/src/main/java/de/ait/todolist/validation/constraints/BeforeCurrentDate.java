@@ -9,12 +9,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(ElementType.FIELD) // на что ее можно вешать - на поле
+@Target(ElementType.TYPE) // на что ее можно вешать - на поле
 @Retention(RetentionPolicy.RUNTIME) // что аннотация не будет удалена в момент работы приложения
 @Constraint(validatedBy = BeforeCurrentDateValidator.class) // чем валидируется
 public @interface BeforeCurrentDate {
 
-    String message() default "дата окончания не может быть раньше текущей даты";
+    String message() default "Start date must be earlier than finish date and they must be later than current date";
 
     Class<?>[] groups() default {};
 

@@ -3,10 +3,12 @@ package de.ait.todolist.dto;
 import de.ait.todolist.validation.constraints.NotWeakPassword;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
+import lombok.Builder;
 import lombok.Data;
 
 
 @Data
+@Builder
 @Schema(description = "Данные для добавления пользователя")
 public class NewUserDto {
 

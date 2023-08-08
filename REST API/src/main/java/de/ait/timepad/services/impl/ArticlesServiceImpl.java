@@ -17,12 +17,7 @@ import java.util.List;
 
 import static de.ait.timepad.dto.ArticleDto.from;
 
-/**
- * 7/27/2023
- * REST API
- *
- * @author Marsel Sidikov (AIT TR)
- */
+
 @RequiredArgsConstructor
 @Service
 public class ArticlesServiceImpl implements ArticlesService {
@@ -35,7 +30,7 @@ public class ArticlesServiceImpl implements ArticlesService {
     public ArticleDto addArticle(NewArticleDto newArticle) {
         User user = usersRepository.findById(newArticle.getAboutUserId())
                 .orElseThrow(() ->
-                        new IncorrectUserIdException("Id <" + newArticle.getAboutUserId() + "> is not correct"));
+                        new IncorrectUserIdException(newArticle.getAboutUserId()));
 
         Article article = Article.builder()
                 .text(newArticle.getText())

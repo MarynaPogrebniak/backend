@@ -35,5 +35,11 @@ public class UsersController implements UsersApi {
         return ResponseEntity
                 .ok(usersService.getTasksOfUser(userId));
     }
+
+    @Override
+    public ResponseEntity<UserDto> getUser(Long userId) {
+        return ResponseEntity
+                .ok(usersService.getUser(userId));
+    }
 }
 

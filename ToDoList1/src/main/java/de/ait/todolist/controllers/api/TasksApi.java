@@ -1,5 +1,6 @@
 package de.ait.todolist.controllers.api;
 
+import de.ait.todolist.dto.ErrorDto;
 import de.ait.todolist.dto.NewTaskDto;
 import de.ait.todolist.dto.TaskDto;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,7 +25,7 @@ public interface TasksApi {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "422", description = "Пользователь с указанным ID отсутствует в системе",
                     content = {
-                            @Content()
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
                     }),
             @ApiResponse(responseCode = "201", description = "Добавленная задача",
                     content = {

@@ -16,12 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-/**
- * 7/25/2023
- * REST API
- *
- * @author Marsel Sidikov (AIT TR)
- */
 @Tags(value = {
         @Tag(name = "Users")
 })
@@ -51,7 +45,7 @@ public interface UsersApi {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "404", description = "Пользователь не найден",
                     content = {
-                            @Content()
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
                     }),
             @ApiResponse(responseCode = "200", description = "Удаленный пользователь",
                     content = {
@@ -60,17 +54,17 @@ public interface UsersApi {
     })
     @DeleteMapping("/{user-id}")
     ResponseEntity<UserDto> deleteUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
-                       @PathVariable("user-id") Long userId);
+                                       @PathVariable("user-id") Long userId);
 
     @Operation(summary = "Обновление пользователя", description = "Доступно администратору")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "404", description = "Пользователь не найден",
                     content = {
-                            @Content()
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
                     }),
             @ApiResponse(responseCode = "403", description = "Нельзя сделать администратором",
                     content = {
-                            @Content()
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
                     }),
             @ApiResponse(responseCode = "200", description = "Обновленный пользователь",
                     content = {
@@ -79,8 +73,8 @@ public interface UsersApi {
     })
     @PutMapping("/{user-id}")
     ResponseEntity<UserDto> updateUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
-                       @PathVariable("user-id") Long userId,
-                       @RequestBody UpdateUserDto updateUser);
+                                       @PathVariable("user-id") Long userId,
+                                       @RequestBody UpdateUserDto updateUser);
 
     @Operation(summary = "Получение пользователя", description = "Доступно всем")
     @ApiResponses(value = {
@@ -95,7 +89,7 @@ public interface UsersApi {
     })
     @GetMapping("/{user-id}")
     ResponseEntity<UserDto> getUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
-                       @PathVariable("user-id") Long userId);
+                                    @PathVariable("user-id") Long userId);
 
     @Operation(summary = "Получение всех статей пользователя", description = "Доступно всем")
     @ApiResponses(value = {
@@ -110,6 +104,6 @@ public interface UsersApi {
     })
     @GetMapping("/{user-id}/articles")
     ResponseEntity<ArticlesDto> getArticlesOfUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
-                    @PathVariable("user-id") Long userId);
+                                                  @PathVariable("user-id") Long userId);
 
 }

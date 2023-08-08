@@ -2,17 +2,13 @@ package de.ait.timepad.dto;
 
 import de.ait.timepad.validation.constraints.NotWeakPassword;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.*;
 
-/**
- * 7/21/2023
- * REST API
- *
- * @author Marsel Sidikov (AIT TR)
- */
 @Data
+@Builder
 @Schema(description = "Данные для добавления пользователя")
 public class NewUserDto {
 

@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 @Entity
+@Table(name = "task")
 public class Task {
 
     @Id

@@ -3,9 +3,16 @@ package de.ait.todolist.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
 public class IncorrectUserIdException extends RuntimeException {
-    public IncorrectUserIdException(String message) {
-        super(message);
+
+    private Long id;
+
+    public IncorrectUserIdException(Long incorrectId) {
+        super();
+        this.id = incorrectId;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

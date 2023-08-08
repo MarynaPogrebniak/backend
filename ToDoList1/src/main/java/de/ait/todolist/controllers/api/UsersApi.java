@@ -60,5 +60,19 @@ public interface UsersApi {
     ResponseEntity<TasksDto> getTasksOfUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
                                                   @PathVariable("user-id") Long userId);
 
+    @Operation(summary = "Получение пользователя", description = "Доступно всем")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Пользователь не найден",
+                    content = {
+                            @Content()
+                    }),
+            @ApiResponse(responseCode = "200", description = "Информация о пользователе",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+                    })
+    })
+    @GetMapping("/{user-id}")
+    ResponseEntity<UserDto> getUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
+                                    @PathVariable("user-id") Long userId);
 }
 

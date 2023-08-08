@@ -1,5 +1,6 @@
 package de.ait.timepad.validation.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Schema(description = "Ошибка валидации")
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class ValidationErrorDto {
 
     @Schema(description = "Поле, в котором возникла ошибка", example = "email")

@@ -1,27 +1,20 @@
 package de.ait.timepad.services.impl;
 
 import de.ait.timepad.dto.*;
-import de.ait.timepad.exceptions.ForbiddenOperationException;
+import de.ait.timepad.exceptions.ForbiddenUpdateUserOperationException;
 import de.ait.timepad.exceptions.NotFoundException;
-import de.ait.timepad.models.Article;
 import de.ait.timepad.models.User;
 import de.ait.timepad.repositories.UsersRepository;
 import de.ait.timepad.services.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static de.ait.timepad.dto.UserDto.from;
 import static de.ait.timepad.dto.ArticleDto.from;
 
-/**
- * 7/21/2023
- * REST API
- *
- * @author Marsel Sidikov (AIT TR)
- */
+
 @RequiredArgsConstructor
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -65,7 +58,11 @@ public class UsersServiceImpl implements UsersService {
         User user = getUserOrThrow(userId);
 
         if (updateUser.getNewRole().equals("ADMIN")) {
-            throw new ForbiddenOperationException("Cannot make an administrator");
+            throw new ForbiddenUpdateUserOperationException("role", "ADMIN");
+        }
+
+        if (updateUser.getNewState().equals("BANNED")) {
+            throw new ForbiddenUpdateUserOperationException("state", "BANNED");
         }
 
         user.setState(User.State.valueOf(updateUser.getNewState()));
@@ -93,6 +90,6 @@ public class UsersServiceImpl implements UsersService {
 
     private User getUserOrThrow(Long userId) {
         return usersRepository.findById(userId).orElseThrow(
-                () -> new NotFoundException("User with id <" + userId + "> not found"));
+                () -> new NotFoundException("User", userId));
     }
 }

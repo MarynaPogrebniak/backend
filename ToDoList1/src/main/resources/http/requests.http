@@ -29,10 +29,10 @@ POST localhost:8080//users/1/tasks
 Content-Type: application/json
 
 {
-  "title" : "",
+  "title" : "1",
   "description" : "Описание задачи 1",
   "startDate": "2022-01-02",
-  "finishDate": ""
+  "finishDate": "2021-01-01"
 }
 
 ### Добавление задачи 2

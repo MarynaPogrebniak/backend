@@ -1,7 +1,6 @@
 package de.ait.todolist.services.impl;
 
 import de.ait.todolist.dto.*;
-import de.ait.todolist.exceptions.ForbiddenOperationException;
 import de.ait.todolist.exceptions.NotFoundException;
 import de.ait.todolist.models.User;
 import de.ait.todolist.repositories.UsersRepository;
@@ -44,31 +43,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UserDto deleteUser(Long userId) {
-        User user = getUserOrThrow(userId);
-
-        usersRepository.delete(user);
-
-        return from(user);
-    }
-
-    @Override
-    public UserDto updateUser(Long userId, UpdateUserDto updateUser) {
-
-        User user = getUserOrThrow(userId);
-
-        if (updateUser.getNewRole().equals("ADMIN")) {
-            throw new ForbiddenOperationException("Cannot make an administrator");
-        }
-
-        user.setRole(User.Role.valueOf(updateUser.getNewRole()));
-
-        usersRepository.save(user);
-
-        return from(user);
-    }
-
-    @Override
     public UserDto getUser(Long userId) {
         return from(getUserOrThrow(userId));
     }
@@ -85,6 +59,6 @@ public class UsersServiceImpl implements UsersService {
 
     private User getUserOrThrow(Long userId) {
         return usersRepository.findById(userId).orElseThrow(
-                () -> new NotFoundException("User with id <" + userId + "> not found"));
+                () -> new NotFoundException("User", userId));
     }
 }

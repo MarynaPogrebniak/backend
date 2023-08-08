@@ -7,9 +7,9 @@ public interface UsersService {
 
     UsersDto getAllUsers();
 
-    UserDto deleteUser(Long userId);
+  //  UserDto deleteUser(Long userId);
 
-    UserDto updateUser(Long userId, UpdateUserDto updateUser);
+  //  UserDto updateUser(Long userId, UpdateUserDto updateUser);
 
     UserDto getUser(Long userId);
 

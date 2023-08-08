@@ -1,16 +1,16 @@
 package de.ait.timepad.controllers;
 
-import de.ait.timepad.models.Article;
-import de.ait.timepad.models.User;
-import de.ait.timepad.repositories.ArticlesRepository;
-import de.ait.timepad.repositories.UsersRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import de.ait.timepad.dto.NewUserDto;
+import de.ait.timepad.dto.UpdateUserDto;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
-
-import java.util.ArrayList;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -22,34 +22,29 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @DisplayName("UsersController is works: ")
 @DisplayNameGeneration(value = DisplayNameGenerator.ReplaceUnderscores.class)
-class UsersControllerTest {
+@ActiveProfiles("test")
+class UsersIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Autowired
-    private UsersRepository usersRepository;
-
-    @Autowired
-    private ArticlesRepository articlesRepository;
-
-    @BeforeEach
-    public void setUp() {
-        usersRepository.clear();
-        articlesRepository.clear();
-    }
+    private ObjectMapper objectMapper;
 
     @Nested
     @DisplayName("POST /api/users is works: ")
     class AddUserTests {
+
         @Test
+        @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
         void add_user() throws Exception {
+            String body = objectMapper.writeValueAsString(NewUserDto.builder()
+                    .password("hello007ABBA!")
+                    .email("sidikov.marsel@gmail.com").build());
+
             mockMvc.perform(post("/api/users")
                             .header("Content-Type", "application/json")
-                            .content("{\n" +
-                                    "  \"email\": \"sidikov.marsel@gmail.com\",\n" +
-                                    "  \"password\": \"qwerty007\"\n" +
-                                    "}"))
+                            .content(body))
                     .andExpect(status().isCreated())
                     .andExpect(jsonPath("$.id", is(1)))
                     .andExpect(jsonPath("$.email", is("sidikov.marsel@gmail.com")))
@@ -61,11 +56,11 @@ class UsersControllerTest {
     @Nested
     @DisplayName("GET /api/users is works: ")
     class GetAllUsersTests {
-        @Test
-        void get_all_users() throws Exception {
-            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
-            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
 
+        @Test
+        @Sql(scripts = "/sql/data_for_users.sql")
+        @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+        void get_all_users() throws Exception {
             mockMvc.perform(get("/api/users"))
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.count", is(2)));
@@ -77,10 +72,10 @@ class UsersControllerTest {
     class DeleteUserTests {
 
         @Test
+        @Sql(scripts = "/sql/data_for_users.sql")
+        @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
         void delete_exist_user() throws Exception {
-            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
-
-            mockMvc.perform(delete("/api/users/1"))
+            mockMvc.perform(delete("/api/users/2"))
                     .andExpect(status().isOk());
         }
 
@@ -96,42 +91,48 @@ class UsersControllerTest {
     class UpdateUserTests {
 
         @Test
+        @Sql(scripts = "/sql/data_for_users.sql")
+        @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
         void update_exist_user() throws Exception {
-            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
+
+            String body = objectMapper.writeValueAsString(UpdateUserDto.builder()
+                    .newRole("MANAGER")
+                    .newState("CONFIRMED").build());
 
             mockMvc.perform(put("/api/users/1")
                             .header("Content-Type", "application/json")
-                            .content("{\n" +
-                                    "  \"newRole\" : \"MANAGER\",\n" +
-                                    "  \"newState\" : \"BANNED\"\n" +
-                                    "}\n"))
+                            .content(body))
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.id", is(1)))
-                    .andExpect(jsonPath("$.state", is("BANNED")))
+                    .andExpect(jsonPath("$.state", is("CONFIRMED")))
                     .andExpect(jsonPath("$.role", is("MANAGER")));
         }
 
         @Test
         void update_not_exist_user() throws Exception {
 
+            String body = objectMapper.writeValueAsString(UpdateUserDto.builder()
+                    .newRole("MANAGER")
+                    .newState("CONFIRMED").build());
+
             mockMvc.perform(put("/api/users/1")
                             .header("Content-Type", "application/json")
-                            .content("{\n" +
-                                    "  \"newRole\" : \"MANAGER\",\n" +
-                                    "  \"newState\" : \"BANNED\"\n" +
-                                    "}\n"))
+                            .content(body))
                     .andExpect(status().isNotFound());
         }
 
         @Test
+        @Sql(scripts = "/sql/data_for_users.sql")
+        @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
         void update_user_as_admin() throws Exception {
-            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
+
+            String body = objectMapper.writeValueAsString(UpdateUserDto.builder()
+                    .newRole("ADMIN")
+                    .newState("CONFIRMED").build());
+
             mockMvc.perform(put("/api/users/1")
                             .header("Content-Type", "application/json")
-                            .content("{\n" +
-                                    "  \"newRole\" : \"ADMIN\",\n" +
-                                    "  \"newState\" : \"BANNED\"\n" +
-                                    "}\n"))
+                            .content(body))
                     .andExpect(status().isForbidden());
         }
     }
@@ -139,9 +140,11 @@ class UsersControllerTest {
     @Nested
     @DisplayName("GET /api/users/{userId} method is works: ")
     class GetUserTests {
+
         @Test
+        @Sql(scripts = "/sql/data_for_users.sql")
+        @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
         void get_exist_user() throws Exception {
-            usersRepository.save(User.builder().state(User.State.NOT_CONFIRMED).role(User.Role.USER).build());
 
             mockMvc.perform(get("/api/users/1"))
                     .andExpect(status().isOk())
@@ -152,7 +155,6 @@ class UsersControllerTest {
 
         @Test
         void get_not_exist_user() throws Exception {
-
             mockMvc.perform(get("/api/users/1"))
                     .andExpect(status().isNotFound());
         }
@@ -161,10 +163,11 @@ class UsersControllerTest {
     @Nested
     @DisplayName("GET /api/users/{userId}/articles")
     class GetArticlesOfUserTest {
-        @Test
-        void get_articles_for_exist_user() throws Exception {
-            initializeDataForTest();
 
+        @Test
+        @Sql(scripts = "/sql/data_for_users.sql")
+        @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
+        void get_articles_for_exist_user() throws Exception {
             mockMvc.perform(get("/api/users/1/articles"))
                     .andExpect(status().isOk())
                     .andDo(print())
@@ -173,37 +176,8 @@ class UsersControllerTest {
                     .andExpect(jsonPath("$.articles[1].id", is(2)));
         }
 
-        private void initializeDataForTest() {
-            User user = User.builder()
-                    .state(User.State.NOT_CONFIRMED)
-                    .role(User.Role.USER)
-                    .articles(new ArrayList<>())
-                    .build();
-
-            Article article1 = Article.builder()
-                    .id(1L)
-                    .text("Article 1")
-                    .about(user)
-                    .build();
-
-            Article article2 = Article.builder()
-                    .id(1L)
-                    .text("Article 2")
-                    .about(user)
-                    .build();
-
-            articlesRepository.save(article1);
-            articlesRepository.save(article2);
-
-            user.getArticles().add(article1);
-            user.getArticles().add(article2);
-
-            usersRepository.save(user);
-        }
-
         @Test
         void get_articles_for_not_exist_user() throws Exception {
-
             mockMvc.perform(get("/api/users/1/articles"))
                     .andExpect(status().isNotFound());
         }

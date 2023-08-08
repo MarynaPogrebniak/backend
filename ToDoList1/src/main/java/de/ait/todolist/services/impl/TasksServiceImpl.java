@@ -3,6 +3,7 @@ package de.ait.todolist.services.impl;
 
 import de.ait.todolist.dto.NewTaskDto;
 import de.ait.todolist.dto.TaskDto;
+import de.ait.todolist.exceptions.IncorrectUserIdException;
 import de.ait.todolist.exceptions.NotFoundException;
 import de.ait.todolist.models.Task;
 import de.ait.todolist.models.User;
@@ -45,6 +46,6 @@ public class TasksServiceImpl implements TasksService {
 
     private User getUserOrThrow(Long userId) {
         return usersRepository.findById(userId).orElseThrow(
-                () -> new NotFoundException("User with id <" + userId + "> not found"));
+                () -> new IncorrectUserIdException(userId));
     }
 }
