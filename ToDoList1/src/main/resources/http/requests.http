@@ -32,7 +32,7 @@ Content-Type: application/json
   "title" : "",
   "description" : "Описание задачи 1",
   "startDate": "2022-01-02",
-  "finishDate": "2022-02-03"
+  "finishDate": ""
 }
 
 ### Добавление задачи 2
