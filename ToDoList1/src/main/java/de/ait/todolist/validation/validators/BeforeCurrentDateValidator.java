@@ -1,5 +1,6 @@
 package de.ait.todolist.validation.validators;
 
+import de.ait.todolist.dto.NewTaskDto;
 import de.ait.todolist.validation.constraints.BeforeCurrentDate;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -8,23 +9,21 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class BeforeCurrentDateValidator implements ConstraintValidator<BeforeCurrentDate, String> {
+public class BeforeCurrentDateValidator implements ConstraintValidator<BeforeCurrentDate, NewTaskDto> {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     @Override
-    public boolean isValid(String checkDate, ConstraintValidatorContext constraintValidatorContext) {
-        if (checkDate == null || checkDate.trim().isEmpty()) {
-            return true;
-        }
+    public boolean isValid(NewTaskDto newTaskDto, ConstraintValidatorContext constraintValidatorContext) {
 
-        LocalDate checkDateLD;
         try {
-            checkDateLD = LocalDate.parse(checkDate, formatter);
+            LocalDate startDate = LocalDate.parse(newTaskDto.getStartDate());
+            LocalDate finishDate = LocalDate.parse(newTaskDto.getFinishDate());
+            LocalDate currentDate = LocalDate.now();
+
+            return  startDate.isAfter(currentDate) && finishDate.isAfter(startDate)
+
+                    || startDate.isEqual(currentDate) && finishDate.isAfter(startDate);
         } catch (RuntimeException e) {
             return false;
         }
-
-        LocalDate currentDate = LocalDate.now();
-
-        return checkDateLD.isEqual(currentDate) || checkDateLD.isAfter(currentDate);
     }
 }
