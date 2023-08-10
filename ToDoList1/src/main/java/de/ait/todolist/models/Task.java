@@ -1,10 +1,7 @@
 package de.ait.todolist.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 @Data
@@ -19,14 +16,19 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String description;
+    public String description;
 
-    private String title;
+    public String title;
 
+    @Getter
     private LocalDate startDate;
+
+    @Getter
     private LocalDate finishDate;
 
     @ManyToOne
     @JoinColumn(name = "executor_id")
     User executor;
+
+
 }

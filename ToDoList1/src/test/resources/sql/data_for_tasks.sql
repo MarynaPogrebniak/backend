@@ -1,3 +1,3 @@
-insert into account(email, role)
-values ('test@mail.com', 'USER');
+insert into account(email, state, role)
+values ('test@mail.com', 'NOT_CONFIRMED', 'USER');
 

@@ -5,54 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dba9b47a-4c78-4997-b2af-0c6e5de6a1c6" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/dto/ErrorDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/exceptions/ForbiddenUpdateUserOperationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/handler/RestExceptionsHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/application-test.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sql/data_for_articles.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/sql/data_for_users.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/dto/ErrorDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/exceptions/ForbiddenUpdateUserOperationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/handler/RestExceptionsHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ToDoList1/src/test/java/de/ait/todolist/controllers/TasksIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ToDoList1/src/test/java/de/ait/todolist/controllers/UsersIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ToDoList1/src/test/resources/application-test.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ToDoList1/src/test/resources/sql/data_for_tasks.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ToDoList1/src/test/resources/sql/data_for_users.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/controllers/api/ArticlesApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/controllers/api/ArticlesApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/controllers/api/UsersApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/controllers/api/UsersApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/dto/NewArticleDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/dto/NewArticleDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/dto/NewUserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/dto/NewUserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/dto/UpdateUserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/dto/UpdateUserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/exceptions/ForbiddenOperationException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/exceptions/IncorrectUserIdException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/exceptions/IncorrectUserIdException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/exceptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/exceptions/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/services/impl/ArticlesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/services/impl/ArticlesServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/services/impl/UsersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/services/impl/UsersServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/ait/timepad/validation/dto/ValidationErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/ait/timepad/validation/dto/ValidationErrorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/de/ait/timepad/controllers/ArticlesControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/ait/timepad/controllers/ArticlesIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/de/ait/timepad/controllers/UsersControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/ait/timepad/controllers/UsersIntegrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ToDoList" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/controllers/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/controllers/api/TasksApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/controllers/api/TasksApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/controllers/api/UsersApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/controllers/api/UsersApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/dto/NewTaskDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/dto/NewTaskDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/dto/NewUserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/dto/NewUserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/exceptions/ForbiddenOperationException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/exceptions/IncorrectUserIdException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/exceptions/IncorrectUserIdException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/exceptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/exceptions/NotFoundException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/models/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/models/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/services/UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/services/UsersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/services/impl/TasksServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/services/impl/TasksServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/services/impl/UsersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/services/impl/UsersServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/validation/constraints/BeforeCurrentDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/validation/constraints/BeforeCurrentDate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/validation/dto/ValidationErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/validation/dto/ValidationErrorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/validation/handler/ValidationExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/validation/handler/ValidationExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/validation/validators/BeforeCurrentDateValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/java/de/ait/todolist/validation/validators/BeforeCurrentDateValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ToDoList1/src/main/resources/http/requests.http" beforeDir="false" afterPath="$PROJECT_DIR$/../ToDoList1/src/main/resources/http/requests.http" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,9 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2ThZ3tRbwNLYAs8XdMYTWWun2iF" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -85,7 +41,7 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/mspog/Backend/REST API/pom.xml",
+    "last_opened_file_path": "C:/Users/mspog/Backend/ToDoList",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -93,6 +49,7 @@
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
+    "spring.configuration.checksum": "35c77db25c01c3077e598531905dbd06",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -171,7 +128,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1691497076931</updated>
-      <workItem from="1691497077996" duration="15460000" />
+      <workItem from="1691497077996" duration="15840000" />
+      <workItem from="1691565257066" duration="129000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />

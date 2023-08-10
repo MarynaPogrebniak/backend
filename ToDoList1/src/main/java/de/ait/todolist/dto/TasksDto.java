@@ -19,5 +19,8 @@ public class TasksDto {
     private List<TaskDto> tasks;
 
     @Schema(description = "Количество задач пользователя", example = "3")
-    private Integer count;
+    private Long count;
+
+    @Schema(description = "Общее количество страниц", example = "3")
+    private Integer pagesCount;
 }

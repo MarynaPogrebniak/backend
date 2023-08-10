@@ -1,9 +1,6 @@
 package de.ait.todolist.controllers.api;
 
-import de.ait.todolist.dto.NewUserDto;
-import de.ait.todolist.dto.TasksDto;
-import de.ait.todolist.dto.UserDto;
-import de.ait.todolist.dto.UsersDto;
+import de.ait.todolist.dto.*;
 import de.ait.todolist.validation.dto.ValidationErrorsDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -22,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @Tags(value = {
         @Tag(name = "Users")
 })
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public interface UsersApi {
 
     @Operation(summary = "Создание пользователя", description = "Доступно только администратору")
@@ -40,9 +37,28 @@ public interface UsersApi {
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<UserDto> addUser(@Parameter(required = true, description = "Пользователь") @RequestBody @Valid NewUserDto newUser);
 
-    @Operation(summary = "Получение всех пользователей", description = "Доступно всем")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Список пользователей",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = UsersDto.class))
+                    }),
+            @ApiResponse(responseCode = "403", description = "Попытка сортировки по запрещенному полю",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
+                    })
+    })
+    @Operation(summary = "Получение пользователей", description = "Доступно всем")
     @GetMapping
-    ResponseEntity<UsersDto> getAllUsers();
+    ResponseEntity<UsersDto> getAllUsers(
+            @Parameter(description = "Номер страницы", example = "1")
+            @RequestParam(value = "page") Integer page,
+            @Parameter(description = "Поле, по которому хотим выполнять сортировку. Доступно: email, role, state, id")
+            @RequestParam(value = "orderBy", required = false) String orderBy,
+            @Parameter(description = "Указать true, если необходимо сортировать в обратном порядке")
+            @RequestParam(value = "desc", required = false) Boolean desc,
+            @RequestParam(value = "filterBy", required = false) String filterBy,
+            @RequestParam(value = "filterValue", required = false) String filterValue);
+
 
 
     @Operation(summary = "Получение всех задач пользователя", description = "Доступно всем")
@@ -60,6 +76,26 @@ public interface UsersApi {
     ResponseEntity<TasksDto> getTasksOfUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
                                                   @PathVariable("user-id") Long userId);
 
+    @Operation(summary = "Обновление пользователя", description = "Доступно администратору")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "404", description = "Пользователь не найден",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
+                    }),
+            @ApiResponse(responseCode = "403", description = "Нельзя сделать администратором",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
+                    }),
+            @ApiResponse(responseCode = "200", description = "Обновленный пользователь",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+                    })
+    })
+    @PutMapping("/{user-id}")
+    ResponseEntity<UserDto> updateUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
+                                       @PathVariable("user-id") Long userId,
+                                       @RequestBody UpdateUserDto updateUser);
+
     @Operation(summary = "Получение пользователя", description = "Доступно всем")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "404", description = "Пользователь не найден",
@@ -74,5 +110,24 @@ public interface UsersApi {
     @GetMapping("/{user-id}")
     ResponseEntity<UserDto> getUser(@Parameter(required = true, description = "Идентификатор пользователя", example = "2")
                                     @PathVariable("user-id") Long userId);
+
+
+    @Operation(summary = "Создание задачи", description = "Доступно всем пользователям")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "422", description = "Пользователь с указанным ID отсутствует в системе",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorDto.class))
+                    }),
+            @ApiResponse(responseCode = "201", description = "Добавленная задача",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = TaskDto.class))
+                    })
+    })
+    @PostMapping("/{users-id}/tasks")
+    @ResponseStatus(HttpStatus.CREATED)
+    ResponseEntity<TaskDto> addTask(@RequestBody @Valid NewTaskDto newTask, @PathVariable("users-id") Long userId);
 }
+
+
+
 

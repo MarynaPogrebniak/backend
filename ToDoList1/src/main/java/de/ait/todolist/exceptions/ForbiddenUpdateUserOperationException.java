@@ -3,23 +3,10 @@ package de.ait.todolist.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.FORBIDDEN)
-public class ForbiddenUpdateUserOperationException extends RuntimeException {
-
-    private String field;
-    private String newValue;
+public class ForbiddenUpdateUserOperationException extends RestException {
 
     public ForbiddenUpdateUserOperationException(String field, String newValue) {
-        super();
-        this.field = field;
-        this.newValue = newValue;
+        super(HttpStatus.FORBIDDEN, "Cannot set <" + field + "> as <" + newValue + ">");
     }
 
-    public String getField() {
-        return field;
-    }
-
-    public String getNewValue() {
-        return newValue;
-    }
 }

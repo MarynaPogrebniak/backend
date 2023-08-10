@@ -18,5 +18,8 @@ public class UsersDto {
     private List<UserDto> users;
 
     @Schema(description = "Общее количество пользователей", example = "1")
-    private Integer count;
+    private Long count;
+
+    @Schema(description = "Общее количество страниц", example = "3")
+    private Integer pagesCount;
 }

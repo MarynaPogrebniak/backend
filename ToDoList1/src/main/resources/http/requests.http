@@ -1,43 +1,43 @@
 ### Добавление пользователя 1
 
-POST http://localhost:8080/users
+POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
-  "email": "",
-  "password": ""
+  "email": "marsel@gmail.com",
+  "password": "Qweerty123!"
 }
 
 ### Добавление пользователя 2
 
-POST http://localhost:8080/users
+POST http://localhost:8080/api/users
 Content-Type: application/json
 
 {
   "email": "alisher@gmail.com",
-  "password": "hello006!"
+  "password": "Hello006!"
 }
 
 
 ### Получение всех пользователей
 
-GET localhost:8080/users
+GET localhost:8080/api/users?orderBy=email&desc=true&page=0&filterBy=state&filterValue=NOT_CONFIRMED
 
 ### Добавление задачи 1
 
-POST localhost:8080//users/1/tasks
+POST localhost:8080//api/users/1/tasks
 Content-Type: application/json
 
 {
   "title" : "1",
   "description" : "Описание задачи 1",
-  "startDate": "2022-01-02",
-  "finishDate": "2021-01-01"
+  "startDate": "2024-01-02",
+  "finishDate": "2025-01-01"
 }
 
 ### Добавление задачи 2
 
-POST localhost:8080//users/1/tasks
+POST localhost:8080//api/users/1/tasks
 Content-Type: application/json
 
 {
@@ -49,7 +49,7 @@ Content-Type: application/json
 
 ### Добавление задачи 3
 
-POST localhost:8080//users/2/tasks
+POST localhost:8080//api/users/2/tasks
 Content-Type: application/json
 
 {
@@ -61,8 +61,25 @@ Content-Type: application/json
 
 ### Получение всех задач пользователя 1
 
-GET localhost:8080/users/1/tasks
+GET localhost:8080/api/users/1/tasks?page=0
 
 ### Получение всех задач пользователя 2
 
-GET localhost:8080/users/2/tasks
+GET localhost:8080/api/users/2/tasks?page=0
+
+### Получение всех задач
+
+GET localhost:8080/api/tasks?orderBy=title&desc=true&page=1
+### Получение всех задач
+
+GET localhost:8080/api/tasks?page=1
+
+### Обновление пользователя 1
+
+PUT http://localhost:8080/api/users/1
+Content-Type: application/json
+
+{
+  "newRole" : "MANAGER",
+  "newState" : "BANNED"
+}

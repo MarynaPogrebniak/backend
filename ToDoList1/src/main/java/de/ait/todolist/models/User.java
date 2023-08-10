@@ -1,10 +1,7 @@
 package de.ait.todolist.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,13 +9,22 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = "tasks")
 @Entity
 @Table(name = "account")
 public class User {
 
     public enum Role {
         ADMIN,
-        USER
+        USER,
+        MANAGER
+    }
+
+    public enum State {
+        NOT_CONFIRMED,
+        CONFIRMED,
+        BANNED,
+        DELETED
     }
 
     @Id
@@ -31,6 +37,9 @@ public class User {
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
+
+    @Enumerated(value = EnumType.STRING)
+    private State state;
 
     @OneToMany(mappedBy = "executor")
     private List<Task> tasks;

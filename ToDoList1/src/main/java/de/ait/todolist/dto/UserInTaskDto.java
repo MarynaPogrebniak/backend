@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Schema(description = "Информация о задаче пользователя")
 public class UserInTaskDto {
+
     @Schema(description = "Идентификатор пользователя", example = "1")
     private Long id;
 

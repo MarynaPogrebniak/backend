@@ -26,11 +26,15 @@ public class UserDto {
     @Schema(description = "Роль пользователя - ADMIN - администратор, USER - пользователь, MANAGER - менеджер", example = "ADMIN")
     private String role;
 
+    @Schema(description = "Статус пользователя - NOT_CONFIRMED - не подтвержден, " +
+            "CONFIRMED - подтвержден, BANNED - забанен, DELETED - удален", example = "CONFIRMED")
+    private String state;
 
     public static UserDto from(User user) {
         return UserDto.builder()
                 .id(user.getId())
                 .email(user.getEmail())
+                .state(user.getState().name())
                 .role(user.getRole().name())
                 .build();
     }
