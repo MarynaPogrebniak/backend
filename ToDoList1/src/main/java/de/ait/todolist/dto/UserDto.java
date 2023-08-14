@@ -30,6 +30,12 @@ public class UserDto {
             "CONFIRMED - подтвержден, BANNED - забанен, DELETED - удален", example = "CONFIRMED")
     private String state;
 
+    @Schema(description = "Список опубликованных задач пользователя")
+    private List<TaskDto> publishedTasks;
+
+    @Schema(description = "Список всех задач пользователя")
+    private List<TaskDto> tasks;
+
     public static UserDto from(User user) {
         return UserDto.builder()
                 .id(user.getId())
@@ -39,9 +45,29 @@ public class UserDto {
                 .build();
     }
 
+    public static UserDto fromWithTasks(User user) {
+        UserDto result = from(user);
+
+        if (user.getTasks() != null) {
+            result.setTasks(TaskDto.from(user.getTasks()));
+        }
+
+        if (user.getPublishedTasks() != null) {
+            result.setPublishedTasks(TaskDto.from(user.getPublishedTasks()));
+        }
+
+        return result;
+    }
+
     public static List<UserDto> from(List<User> users) {
         return users.stream()
                 .map(UserDto::from)
+                .collect(Collectors.toList());
+    }
+
+    public static List<UserDto> fromWithTasks(List<User> users) {
+        return users.stream()
+                .map(UserDto::fromWithTasks)
                 .collect(Collectors.toList());
     }
 }

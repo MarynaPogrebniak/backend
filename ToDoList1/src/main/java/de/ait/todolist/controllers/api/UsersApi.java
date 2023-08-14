@@ -1,6 +1,8 @@
 package de.ait.todolist.controllers.api;
 
 import de.ait.todolist.dto.*;
+import de.ait.todolist.dto.pages.TasksDto;
+import de.ait.todolist.dto.pages.UsersDto;
 import de.ait.todolist.validation.dto.ValidationErrorsDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -49,17 +51,7 @@ public interface UsersApi {
     })
     @Operation(summary = "Получение пользователей", description = "Доступно всем")
     @GetMapping
-    ResponseEntity<UsersDto> getAllUsers(
-            @Parameter(description = "Номер страницы", example = "1")
-            @RequestParam(value = "page") Integer page,
-            @Parameter(description = "Поле, по которому хотим выполнять сортировку. Доступно: email, role, state, id")
-            @RequestParam(value = "orderBy", required = false) String orderBy,
-            @Parameter(description = "Указать true, если необходимо сортировать в обратном порядке")
-            @RequestParam(value = "desc", required = false) Boolean desc,
-            @RequestParam(value = "filterBy", required = false) String filterBy,
-            @RequestParam(value = "filterValue", required = false) String filterValue);
-
-
+    ResponseEntity<UsersDto> getAllUsers(UsersRequest usersRequest);
 
     @Operation(summary = "Получение всех задач пользователя", description = "Доступно всем")
     @ApiResponses(value = {
@@ -126,7 +118,14 @@ public interface UsersApi {
     @PostMapping("/{users-id}/tasks")
     @ResponseStatus(HttpStatus.CREATED)
     ResponseEntity<TaskDto> addTask(@RequestBody @Valid NewTaskDto newTask, @PathVariable("users-id") Long userId);
+
+    @GetMapping("/{user-id}/tasks/published")
+    ResponseEntity<TasksDto> getPublishedTasksOfUser(@Parameter(description = "Номер страницы", example = "1")
+                                                     @RequestParam(value = "page") Integer page,
+                                                     @PathVariable("user-id") Long userId);
 }
+
+
 
 
 

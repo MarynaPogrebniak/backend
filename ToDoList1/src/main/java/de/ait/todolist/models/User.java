@@ -2,6 +2,7 @@ package de.ait.todolist.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(exclude = "tasks")
+@ToString(exclude = "tasks")
 @Entity
 @Table(name = "account")
 public class User {
@@ -43,4 +45,8 @@ public class User {
 
     @OneToMany(mappedBy = "executor")
     private List<Task> tasks;
+
+    @OneToMany(mappedBy = "executor")
+    @Where(clause = "state = 'PUBLISHED'")
+    private List<Task> publishedTasks;
 }

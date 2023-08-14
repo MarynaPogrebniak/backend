@@ -1,5 +1,6 @@
-package de.ait.todolist.dto;
+package de.ait.todolist.dto.pages;
 
+import de.ait.todolist.dto.UserDto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,13 +13,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Schema(description = "Задачи пользователя")
-public class TasksDto {
+@Schema(description = "Список пользователей")
+public class UsersDto {
+    @Schema(description = "Пользователи системы")
+    private List<UserDto> users;
 
-    @Schema(description = "Список задач")
-    private List<TaskDto> tasks;
-
-    @Schema(description = "Количество задач пользователя", example = "3")
+    @Schema(description = "Общее количество пользователей", example = "1")
     private Long count;
 
     @Schema(description = "Общее количество страниц", example = "3")

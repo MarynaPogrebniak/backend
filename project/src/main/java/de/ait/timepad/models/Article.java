@@ -21,6 +21,10 @@ import java.time.LocalDate;
 @Entity
 public class Article {
 
+    public enum State {
+        DRAFT, PUBLISHED, DELETED
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,4 +36,7 @@ public class Article {
     @ManyToOne
     @JoinColumn(name = "about_id")
     private User about;
+
+    @Enumerated(value = EnumType.STRING)
+    private State state;
 }

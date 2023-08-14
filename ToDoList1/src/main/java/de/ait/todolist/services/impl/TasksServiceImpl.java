@@ -3,15 +3,15 @@ package de.ait.todolist.services.impl;
 
 import de.ait.todolist.dto.NewTaskDto;
 import de.ait.todolist.dto.TaskDto;
-import de.ait.todolist.dto.TasksDto;
+import de.ait.todolist.dto.pages.TasksDto;
 import de.ait.todolist.exceptions.ForbiddenFieldException;
 import de.ait.todolist.exceptions.IncorrectUserIdException;
-import de.ait.todolist.exceptions.NotFoundException;
 import de.ait.todolist.models.Task;
 import de.ait.todolist.models.User;
 import de.ait.todolist.repositories.TasksRepository;
 import de.ait.todolist.repositories.UsersRepository;
 import de.ait.todolist.services.TasksService;
+import de.ait.todolist.utils.PageRequestUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -31,6 +31,7 @@ public class TasksServiceImpl implements TasksService {
     private final UsersRepository usersRepository;
 
     private final TasksRepository tasksRepository;
+    private final PageRequestUtil pageRequestUtil;
 
     @Value("${tasks.sort.fields}")
     private List<String> sortFields;
@@ -38,8 +39,6 @@ public class TasksServiceImpl implements TasksService {
     @Value("${tasks.filter.fields}")
     private List<String> filterFields;
 
-    @Value("${users.page.size}")
-    private Integer pageSize;
 
     @Override
     public TaskDto addTask(NewTaskDto newTask, Long userId) {
@@ -71,7 +70,7 @@ public class TasksServiceImpl implements TasksService {
                                 String filterBy,
                                 String filterValue) {
         // создаем запрос на страницу
-        PageRequest pageRequest = getPageRequest(pageNumber, orderByField, desc);
+        PageRequest pageRequest = pageRequestUtil.getPageRequest(pageNumber, orderByField, desc, sortFields);
 
         Page<Task> page = getTasksPage(filterBy, filterValue, pageRequest);
 
@@ -87,7 +86,7 @@ public class TasksServiceImpl implements TasksService {
         if (filterBy == null || filterBy.isEmpty()) { // если не была задана фильтрация
             page = tasksRepository.findAll(pageRequest); // просто возвращаем данные
         } else { // если была задана фильтрация
-            checkField(filterFields, filterBy); // проверяем поле - есть ли оно в списке разрешенных для фильтрации полей
+            pageRequestUtil.checkField(filterFields, filterBy); // проверяем поле - есть ли оно в списке разрешенных для фильтрации полей
             if (filterBy.equals("startDate")) {
                 LocalDate startDate = LocalDate.parse(filterValue); // Парсим строку в LocalDate
                 page = tasksRepository.findAllByStartDate(startDate, pageRequest);
@@ -98,31 +97,4 @@ public class TasksServiceImpl implements TasksService {
         }
         return page;
     }
-
-    private PageRequest getPageRequest(Integer pageNumber, String orderByField, Boolean desc) {
-
-        if (orderByField != null && !orderByField.isEmpty()) { // проверяем, задал ли клиент поле для сортировки?
-
-            checkField(sortFields, orderByField); // проверяем, доступно ли нам поле для сортировки
-
-            Sort.Direction direction = Sort.Direction.ASC; // предполагаем, что сортировка будет в прямом порядке
-
-            if (desc != null && desc) { // если клиент задал сортировку в обратном порядке
-                direction = Sort.Direction.DESC; // задаем обратный порядок сортировки
-            }
-
-            Sort sort = Sort.by(direction, orderByField); // создаем объект для сортировки направление + поле
-
-            return PageRequest.of(pageNumber, pageSize, sort); // создаем запрос на получение страницы пользователей с сортировкой
-        } else {
-            return PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.ASC, "id")); // если пользователь не задал сортировку - сортируем по id
-        }
-    }
-
-    private void checkField(List<String> allowedFields, String field) {
-        if (!allowedFields.contains(field)) {
-            throw new ForbiddenFieldException(field);
-        }
-    }
-
 }

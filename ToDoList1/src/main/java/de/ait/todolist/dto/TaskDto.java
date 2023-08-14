@@ -35,11 +35,15 @@ public class TaskDto {
     @Schema(description = "Пользователь, чья задача")
     private UserInTaskDto executor;
 
+    @Schema(description = "Состояние задачи", example = "PUBLISHED")
+    private String state;
+
     public static TaskDto from(Task task) {
         TaskDto result = TaskDto.builder()
                 .id(task.getId())
                 .description(task.getDescription())
                 .title(task.getTitle())
+                .state(task.getState().toString())
                 .build();
 
         if (task.getExecutor() != null) {

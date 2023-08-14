@@ -2,6 +2,8 @@ package de.ait.todolist.controllers;
 
 import de.ait.todolist.controllers.api.UsersApi;
 import de.ait.todolist.dto.*;
+import de.ait.todolist.dto.pages.TasksDto;
+import de.ait.todolist.dto.pages.UsersDto;
 import de.ait.todolist.services.TasksService;
 import de.ait.todolist.services.UsersService;
 import lombok.RequiredArgsConstructor;
@@ -25,13 +27,9 @@ public class UsersController implements UsersApi {
     }
 
     @Override
-    public ResponseEntity<UsersDto> getAllUsers(Integer pageNumber,
-                                                String orderBy,
-                                                Boolean desc,
-                                                String filterBy,
-                                                String filterValue) {
+    public ResponseEntity<UsersDto> getAllUsers(UsersRequest request) {
         return ResponseEntity
-                .ok(usersService.getAllUsers(pageNumber, orderBy, desc, filterBy, filterValue));
+                .ok(usersService.getAllUsers(request));
     }
 
     @Override
@@ -57,6 +55,11 @@ public class UsersController implements UsersApi {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(tasksService.addTask(newTask, userId));
+    }
+
+    @Override
+    public ResponseEntity<TasksDto> getPublishedTasksOfUser(Integer pageNumber, Long userId) {
+        return ResponseEntity.ok(usersService.getPublishedTasksOfUser(pageNumber, userId));
     }
 }
 

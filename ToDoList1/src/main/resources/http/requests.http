@@ -21,8 +21,7 @@ Content-Type: application/json
 
 ### Получение всех пользователей
 
-GET localhost:8080/api/users?orderBy=email&desc=true&page=0&filterBy=state&filterValue=NOT_CONFIRMED
-
+GET localhost:8080/api/users?orderBy=email&desc=true&page=0&filterBy=state&filterValue=CONFIRMED
 ### Добавление задачи 1
 
 POST localhost:8080//api/users/1/tasks
@@ -61,7 +60,7 @@ Content-Type: application/json
 
 ### Получение всех задач пользователя 1
 
-GET localhost:8080/api/users/1/tasks?page=0
+GET localhost:8080/api/users/1/tasks/published?page=0
 
 ### Получение всех задач пользователя 2
 
@@ -72,7 +71,7 @@ GET localhost:8080/api/users/2/tasks?page=0
 GET localhost:8080/api/tasks?orderBy=title&desc=true&page=1
 ### Получение всех задач
 
-GET localhost:8080/api/tasks?page=1
+GET localhost:8080/api/tasks?page=0
 
 ### Обновление пользователя 1
 
@@ -83,3 +82,11 @@ Content-Type: application/json
   "newRole" : "MANAGER",
   "newState" : "BANNED"
 }
+
+### Получение пользователя с задачами
+GET localhost:8080/api/users?tasks=published&page=0
+
+### Получить все опубликованные задачи определенного пользователя
+
+GET http://localhost:8080/api/users/1/tasks/published?page=0
+

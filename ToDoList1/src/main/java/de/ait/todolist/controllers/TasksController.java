@@ -1,13 +1,9 @@
 package de.ait.todolist.controllers;
 
 import de.ait.todolist.controllers.api.TasksApi;
-import de.ait.todolist.dto.NewTaskDto;
-import de.ait.todolist.dto.TaskDto;
-import de.ait.todolist.dto.TasksDto;
-import de.ait.todolist.dto.UsersDto;
+import de.ait.todolist.dto.pages.TasksDto;
 import de.ait.todolist.services.TasksService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,5 +22,6 @@ public class TasksController implements TasksApi {
         return ResponseEntity
                 .ok(tasksService.getAllTasks(pageNumber, orderBy,desc, filterBy, filterValue));
     }
+
 }
 
