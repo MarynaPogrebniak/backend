@@ -1,8 +1,9 @@
 package de.ait.todolist.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 @Data
 @AllArgsConstructor

@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface UsersRepository extends JpaRepository<User, Long> {
 
@@ -17,6 +18,8 @@ public interface UsersRepository extends JpaRepository<User, Long> {
 
     // показать всех пользователей, у которых есть задачи в заданном промежутке
     List<User> findAllByTasks_StartDateBetween(LocalDate from, LocalDate to);
+
+    Optional<User> findByEmail(String email);
 
     // JPQL
     @Query(value = "select distinct user from User user left join user.tasks task where task.state = 'PUBLISHED'")

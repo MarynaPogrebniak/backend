@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +36,8 @@ public class UsersServiceImpl implements UsersService {
 
     private final PageRequestUtil pageRequestUtil;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Value("${users.sort.fields}")
     private List<String> sortFields;
 
@@ -47,7 +50,7 @@ public class UsersServiceImpl implements UsersService {
     public UserDto addUser(NewUserDto newUser) {
         User user = User.builder()
                 .email(newUser.getEmail())
-                .password(newUser.getPassword())
+                .hashPassword(passwordEncoder.encode(newUser.getPassword()))
                 .role(User.Role.USER)
                 .state(User.State.NOT_CONFIRMED)
                 .build();

@@ -1,8 +1,8 @@
 package de.ait.todolist.validation.constraints;
 
 import de.ait.todolist.validation.validators.PasswordValidator;
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
+import javax.validation.Constraint;
+import javax.validation.Payload;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

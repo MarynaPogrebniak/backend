@@ -1,9 +1,9 @@
 package de.ait.todolist.models;
 
-import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -35,7 +35,7 @@ public class User {
 
     private String email;
 
-    private String password;
+    private String hashPassword;
 
     @Enumerated(value = EnumType.STRING)
     private Role role;

@@ -2,9 +2,13 @@ package de.ait.todolist.dto;
 
 import de.ait.todolist.validation.constraints.NotWeakPassword;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Data

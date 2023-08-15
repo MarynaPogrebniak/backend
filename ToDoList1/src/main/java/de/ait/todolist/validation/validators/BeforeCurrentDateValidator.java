@@ -2,8 +2,8 @@ package de.ait.todolist.validation.validators;
 
 import de.ait.todolist.dto.NewTaskDto;
 import de.ait.todolist.validation.constraints.BeforeCurrentDate;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

@@ -2,10 +2,11 @@ package de.ait.todolist.dto;
 
 import de.ait.todolist.validation.constraints.BeforeCurrentDate;
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
+
 
 @Data
 @Builder
