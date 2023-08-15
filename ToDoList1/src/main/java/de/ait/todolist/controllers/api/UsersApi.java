@@ -97,6 +97,10 @@ public interface UsersApi {
             @ApiResponse(responseCode = "200", description = "Информация о пользователе",
                     content = {
                             @Content(mediaType = "application/json", schema = @Schema(implementation = UserDto.class))
+                    }),
+            @ApiResponse(responseCode = "403", description = "Запрещено",
+                    content = {
+                            @Content(mediaType = "application/json", schema = @Schema(implementation = AuthResponseDto.class))
                     })
     })
     @GetMapping("/{user-id}")
