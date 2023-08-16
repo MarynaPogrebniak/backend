@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tags;
 import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -51,6 +52,8 @@ public interface UsersApi {
     })
     @Operation(summary = "Получение пользователей", description = "Доступно всем")
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
+   // @PreAuthorize("hasAuthority('ADMIN', 'USER')")
     ResponseEntity<UsersDto> getAllUsers(UsersRequest usersRequest);
 
     @Operation(summary = "Получение всех задач пользователя", description = "Доступно всем")
